@@ -23,9 +23,47 @@ public class Book {
         this.publisher = publisher;
     }
 
+    //GETTERS
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPagesNumber() {
+        return pagesNumber;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    //SETTERS
+
+
+    public void setTitle(String title) {
+        checkString(title);
+        this.title = title;
+    }
+
+    public void setPagesNumber(int pagesNumber) {
+        checkPagesNumber(pagesNumber);
+        this.pagesNumber = pagesNumber;
+    }
+
+    public void setAuthor(String author) {
+        checkString(author);
+        this.author = author;
+    }
+
+    public void setPublisher(String publisher) {
+        checkString(publisher);
+        this.publisher = publisher;
+    }
+
     //METHODS
-
-
     @Override
     public String toString() {
         return "Book{" +
