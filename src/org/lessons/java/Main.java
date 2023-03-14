@@ -1,5 +1,9 @@
 package org.lessons.java;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -24,6 +28,7 @@ public class Main {
         int i = 0;
 
         while (i < books.length) {
+
             System.out.print("Nome del libro: ");
             String title = scan.nextLine();
 
@@ -34,11 +39,6 @@ public class Main {
                 bookPages = Integer.parseInt(scan.nextLine());
             } catch (IllegalArgumentException e){
                 System.out.println("Il numero di pagine deve essere un numero");
-                if(i > 0){
-                    --i;
-                } else {
-                    i = 0;
-                }
             }
 
             System.out.println("------");
@@ -56,24 +56,65 @@ public class Main {
                 i++;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage() + " reinserisci i dati");
-                if(i > 0){
-                    --i;
-                } else {
-                    i = 0;
-                }
             } catch (NullPointerException e){
                 System.out.println("uno dei campi è null");
-                if(i > 0){
-                    --i;
-                } else {
-                    i = 0;
-                }
             } finally {
                 System.out.println("------");
             }
-
         }
 
-        System.out.println("Ecco i tuoi libri: " + Arrays.toString(books));
+        scan.close();
+
+        //Create and write the books.txt file
+
+        FileWriter newFile = null;
+        try {
+            newFile = new FileWriter("./books.txt", true);
+            for (Book book : books){
+                newFile.write(book.toString() + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Il file non può essere aperto");
+        } finally {
+            if(newFile != null){
+                try {
+                    newFile.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        //Read the books.txt file
+        File booksFile = null;
+        try {
+            booksFile = new File("./books.txt");
+        } catch (NullPointerException e){
+            System.out.println("Impossibile trovare il file");
+        }
+
+        System.out.println("Ecco i tuoi libri");
+
+        Scanner reader = null;
+
+        try {
+            reader = new Scanner(booksFile);
+
+            while(reader.hasNext()){
+                String bookData = reader.nextLine();
+
+                System.out.println(bookData);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Impossibile leggere il file");;
+        } finally {
+            if(reader != null){
+                reader.close();
+            }
+        }
+
     }
+
+
 }

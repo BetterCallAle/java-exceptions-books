@@ -1,0 +1,4 @@
+Book{title='Se questo è un uomo', pagesNumber=200, author='Primo Levi', publisher='Mondadori'}
+Book{title='Le idi di Marzo', pagesNumber=150, author='Valerio Massimo Manfredi', publisher='Mondadori'}
+Book{title='Il signore degli anelli: La compagnia dell'anello', pagesNumber=704, author='John R. R. Tolkien', publisher='Bompiani'}
+Book{title='L'arte del refactoring', pagesNumber=800, author='Martin Fowler', publisher='Apogeo'}
