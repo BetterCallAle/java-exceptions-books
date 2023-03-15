@@ -39,6 +39,7 @@ public class Main {
                 bookPages = Integer.parseInt(scan.nextLine());
             } catch (IllegalArgumentException e){
                 System.out.println("Il numero di pagine deve essere un numero");
+                continue;
             }
 
             System.out.println("------");
